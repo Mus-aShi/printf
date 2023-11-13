@@ -1,37 +1,38 @@
 #include "main.h"
+#include <unistd.h>
 
 /**
- * _puts - print str with new line
+ * _puts - prints a string with newline
  * @str: the string to print
  *
  * Return: void
  */
+
 int _puts(char *str)
 {
-	char *a = str;
-
-	while (*str)
-		_putchar(*str++);
-	return (str - a);
+char *a = str;
+while (*str)
+_putchar(*str++);
+return (str - a);
 }
-
 /**
- * _putchar - write a char
- * @c: the char to print
+ * _putchar - writes the character c to stdout
+ * @c: The character to print
  *
- * Return: 1 on success and -1 on error
+ * Return: On success 1.
+ * On error, -1 is returned, and errno is set appropriately.
  */
 int _putchar(int c)
 {
-	static int i;
-	static char buf[OUTPUT_BUF_SIZE];
+static int i;
+static char buf[OUTPUT_BUF_SIZE];
 
-	if (c == BUF_SIZE || i >= OUTPUT_BUF_SIZE)
-	{
-		write(1, buf, i);
-		i = 0;
-	}
-	if (c != BUFF_FLUSH)
-		buf[i++] = c;
-	return (1);
+if (c == BUF_FLUSH || i >= OUTPUT_BUF_SIZE)
+{
+write(1, buf, i);
+i = 0;
+}
+if (c != BUF_FLUSH)
+buf[i++] = c;
+return (1);
 }
